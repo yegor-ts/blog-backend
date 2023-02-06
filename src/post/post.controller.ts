@@ -7,10 +7,12 @@ import {
   Param,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/createPost.dto';
 import { UpdatePostDto } from './dto/updatePost.dto';
+import JwtAuthenticationGuard from 'src/authentication/jwt-authentication.guard';
 
 @Controller('post')
 export class PostController {
@@ -27,6 +29,7 @@ export class PostController {
   }
 
   @Post()
+  @UseGuards(JwtAuthenticationGuard)
   @HttpCode(201)
   createPost(@Body() post: CreatePostDto) {
     return this.postService.createPost(post);

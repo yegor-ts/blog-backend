@@ -18,10 +18,22 @@ export class UserService {
   }
 
   async getByEmail(email: string) {
-    const user = await this.userRepository.find({ where: { email } });
+    const user = await this.userRepository.findOne({ where: { email } });
 
     if (!user) {
       throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+
+    return user;
+  }
+
+  async getById(id: number) {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) {
+      throw new HttpException(
+        'User with this id does not exist',
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     return user;
