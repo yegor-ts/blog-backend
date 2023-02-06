@@ -35,6 +35,9 @@ Create a ***.env*** file in root directory and add following values
   POSTGRES_PASSWORD=
   POSTGRES_DB=
   PORT=
+  JWT_SECRET=
+  JWT_EXPIRATION_TIME=
+
 ```
 
 Run the project
